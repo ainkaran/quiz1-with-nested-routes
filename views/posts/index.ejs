@@ -1,0 +1,15 @@
+<%- include('../partials/header') %>
+
+<h1>Tweets</h1>
+
+<div class="post-list">
+  <% for (let tweet of tweets) { %>
+    <div>
+      <a href="/tweets/<%= tweet.id %>">
+        <h3><%= tweet.content %></h3>
+      </a>
+    </div>
+  <% } %>
+</div>
+
+<%- include('../partials/footer') %>

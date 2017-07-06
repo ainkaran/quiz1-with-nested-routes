@@ -1,0 +1,54 @@
+<%- include('../partials/header') %>
+
+  <div class="row">
+    <div class="col-md-4">
+      <div id="box1" class="col-md-4 bg-info" style="position: fixed;">
+          <h2>Full Name</h2>
+          <h3>@username</h3>
+          <p>Message 12</p>
+      </div>
+
+      <div id="box2" class="col-md-4 bg-info" style="position: fixed;">
+        <h2>Trending AweTweets</h2>
+        <h3>@username</h3>
+        <p>#Thiings</p>
+      </div>
+    </div>
+
+    <div class="col-md-8">
+      <h1>Create a New Tweet</h1>
+
+      <form method="POST" action="/tweets">
+        <div>
+          <label>username</label>
+          <input type="text" name="author">
+        </div>
+
+        <div>
+          <textarea name="content" rows="8" cols="80" placeholder="Write message here"></textarea>
+        </div>
+
+        <div>
+          <input type="submit">
+        </div>
+      </form>
+    </div>
+
+  </div>
+
+    <div>
+      <% if (tweets) { %>
+        <% for(var key in tweets){ %>
+          <h1> <%= tweets[key].author %> </h1>
+          <h4> <%= tweets[key].content %> </h4>
+        <% } %>
+      <% } %>
+    </div>
+
+    <div>
+
+    </div>
+  </div>
+
+
+<%- include('../partials/footer') %>
