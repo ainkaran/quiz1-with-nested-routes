@@ -6,31 +6,7 @@ const db = require('../db');
 
 router.get('/new', (req, res) => {
   console.log('testing')
-  res.render('posts/new', {posts: undefined})
-})
-
-
-
-
-/*
-// posts#tweets URL: /tweets HTTP VERB: POST
-router.post('/new', (req, res) => {
-  const tweet = req.body;
-  console.log('this is a test:',tweet);
-
-  db.query(`
-    INSERT INTO tweets (content, author) VALUES ($<content>, $<author>)
-  `, tweet
-  ).then(() => {
-    db.query(`SELECT * FROM tweets`)
-    .then(response => {
-      console.log('it works',)
-      res.render('new', {tweets: response, test:'is it working'})
-    })
-  }).catch(error => {
-    console.log('is there an error')
-    res.send(error)
-  })
+  res.render('posts/new', {tweets: undefined})
 })
 
 // posts#index URL: /posts HTTP VERB: GET
@@ -52,9 +28,30 @@ router.get('/:id', (req, res) => {
     {id: id}
   )
     .then(tweet => {
-      res.render('posts/show', {tweet: tweet});
+      res.render('posts/show', {tweets: tweet});
     })
     .catch(err => res.send(err));
 });
-*/
+
+// posts#tweets URL: /tweets HTTP VERB: POST
+router.post('/new', (req, res) => {
+  const tweet = req.body;
+  console.log('this is a test:',tweet);
+
+  db.query(`
+    INSERT INTO tweets (content, author) VALUES ($<content>, $<author>)
+  `, tweet
+  ).then(() => {
+    db.query(`SELECT * FROM tweets`)
+    .then(response => {
+      console.log('it works',)
+      res.render('posts/new', {tweets: response, test:'is it working'})
+    })
+  }).catch(error => {
+    console.log('is there an error')
+    res.send(error)
+  })
+})
+
+
 module.exports = router;
