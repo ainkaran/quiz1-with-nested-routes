@@ -36,21 +36,25 @@ router.get('/:id', (req, res) => {
 // posts#tweets URL: /tweets HTTP VERB: POST
 router.post('/new', (req, res) => {
   const tweet = req.body;
+
+  // {author: ww, content: wyywgu}
   console.log('this is a test:',tweet);
 
-  db.query(`
-    INSERT INTO tweets (content, author) VALUES ($<content>, $<author>)
-  `, tweet
-  ).then(() => {
-    db.query(`SELECT * FROM tweets`)
-    .then(response => {
-      console.log('it works',)
-      res.render('posts/new', {tweets: response, test:'is it working'})
-    })
-  }).catch(error => {
-    console.log('is there an error')
-    res.send(error)
-  })
+  let previousTweets = req.cookies.tweets || [];
+
+  previousTweets.push(tweet);
+
+  console.log(previousTweets, "again test");
+
+// [{author: ww, content: wgw}, {author: ww, content: wgw}]
+
+  res.cookie('tweets', previousTweets, {maxAge: 1000*60*60*24});
+  // the maxAge option determines how long a cookie will last in milliseconds
+
+  // res.redirect tells the browser, in the response, to go to the given URL
+  res.render('posts/new', {tweets: previousTweets});
+
+
 })
 
 
