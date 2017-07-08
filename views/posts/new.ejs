@@ -19,15 +19,15 @@
     </div>
 
 
-    <div class="col-xs-12 col-md-8">
+    <div class="col-xs-12 col-md-8" style="margin-right:10">
       <form method="POST" action="/posts/new">
         <div>
           <label>username</label>
           <input type="text" name="author">
         </div>
 
-        <div>
-          <textarea name="content" rows="8" cols="80" placeholder="Write message here"></textarea>
+        <div class="col-md-8">
+          <textarea name="content" rows="8" cols="100" placeholder="Write message here"></textarea>
         </div>
 
         <div>
@@ -37,16 +37,16 @@
     </div>
 
 
-  <div class="col-md-8">
-    <% if (tweets) { %>
-      <% for(var i = 0; i < tweets.length; i++){ %>
-        <div style="border: 2px solid red;">
-          <h1> <%= tweets[i].author %> </h1>
-          <h4> <%= tweets[i].content %> </h4>
-        </div>
+    <div class="col-xs-12 col-md-8">
+      <% if (tweets) { %>
+        <% for(var i = 0; i < tweets.length; i++){ %>
+          <div style="border: 2px solid red;">
+            <h1> <%= tweets[i].author %> </h1>
+            <h4> <%= tweets[i].content %> </h4>
+          </div>
+        <% } %>
       <% } %>
-    <% } %>
-  </div>
+    </div>
 
   </div>
 
